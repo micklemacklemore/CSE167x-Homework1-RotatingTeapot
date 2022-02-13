@@ -11,9 +11,13 @@ mat3 Transform::rotate(const float degrees, const vec3& axis) {
   // YOUR CODE FOR HW1 HERE
 	vec3 norm = glm::normalize(axis);
 	double angle = glm::radians(degrees);
-	mat3 I(1, 0, 0, 0, 1, 0, 0, 0, 1);  // Identity matrix
-	mat3 aaT = glm::outerProduct(norm, norm);  // axis * axis(transposed)
-	mat3 A_star = mat3(0, norm.z, -norm.y, -norm.z, 0, norm.x, norm.y, -norm.x, 0);  // A* which is the dual matrix (a.k.a. conjugate transpose, or a hermitian matrix) of axis vector. 
+	
+	// Identity matrix
+	mat3 I(1, 0, 0, 0, 1, 0, 0, 0, 1);  
+	// axis * axis(transposed)
+	mat3 aaT = glm::outerProduct(norm, norm);  
+	// A* which is the dual matrix (a.k.a. conjugate transpose, or a hermitian matrix) of axis vector. 
+	mat3 A_star = mat3(0, norm.z, -norm.y, -norm.z, 0, norm.x, norm.y, -norm.x, 0); 
 
 	return cos(angle) * I + (1 - cos(angle)) * aaT + sin(angle) * A_star;
 }
