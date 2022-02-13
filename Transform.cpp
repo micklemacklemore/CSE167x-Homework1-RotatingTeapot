@@ -4,11 +4,11 @@
 #include <iostream>
 #include "glm/ext.hpp"
 
-//Please implement the following functions:
+// The logic for the functions below is written by me -- Michael Mason
+// -------------------------------------------------------------------
 
 // Helper rotation function.  
 mat3 Transform::rotate(const float degrees, const vec3& axis) {
-  // YOUR CODE FOR HW1 HERE
 	vec3 norm = glm::normalize(axis);
 	double angle = glm::radians(degrees);
 	
@@ -24,14 +24,12 @@ mat3 Transform::rotate(const float degrees, const vec3& axis) {
 
 // Transforms the camera left around the "crystal ball" interface
 void Transform::left(float degrees, vec3& eye, vec3& up) {
-  // YOUR CODE FOR HW1 HERE
 	std::cout << "degrees " << degrees << " eye " << glm::to_string(eye) << " up " << glm::to_string(up) << std::endl;
 	eye = rotate(degrees, up) * eye;
 }
 
 // Transforms the camera up around the "crystal ball" interface
 void Transform::up(float degrees, vec3& eye, vec3& up) {
-  // YOUR CODE FOR HW1 HERE 
 	std::cout << "degrees " << degrees << " eye " << glm::to_string(eye) << " up " << glm::to_string(up) << std::endl;
 	vec3 right = glm::cross(eye, up);
 	up = rotate(degrees, right) * up;
